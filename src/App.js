@@ -72,6 +72,7 @@ function App() {
 
             <Word word = {currentWord} class = "wrd"/>
             <Rhymes rhymes = {rhymes} class = "subwrds"/>
+
             <Footer />
           </>
         )} />
