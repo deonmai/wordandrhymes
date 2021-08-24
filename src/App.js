@@ -63,7 +63,7 @@ function App() {
   }
 
   return (
-    <HashRouter>
+    <HashRouter basename='/'>
       <div className="App">
         <Header className = "head"/>
         <Route path = '/' exact render = {(props) => (
