@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react'
-import { BrowserRouter as Router, Route, HashRouter } from 'react-router-dom'
+import { Route, HashRouter } from 'react-router-dom'
 import Header from './components/Header'
 import Button from './components/Button'
 import Word from './components/Word'
@@ -10,13 +10,12 @@ import About from './components/About'
 
 function App() {
   var randomWords = require('random-words');
-  var rhyme = require('rhymes');
 
   const [currentWord, setWord] = useState("CLICK");
   const [rhymes, setRhymes] = useState(["FOR", "YOUR", "WORD"])
 
   const generateWord = async () => {
-    var new_word = await randomWords();
+    var new_word =  await randomWords();
     new_word = new_word.toUpperCase();
     console.log(new_word);
 
@@ -30,8 +29,17 @@ function App() {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  const getRhymes = (word) => {
-    var rhyme_list = rhyme(word);
+  const getRhymes = async (word) => {
+    var res = await fetch(`https://api.datamuse.com/words?rel_rhy=${word}&max=40`)
+    var rhyme_list = await res.json()
+
+    if (rhyme_list.length < 10)
+    {
+      var res = await fetch(`https://api.datamuse.com/words?rel_nry=${word}&max=40`)
+      var rhymes_two = await res.json()
+      rhyme_list = rhyme_list.concat(rhymes_two)
+    }
+
     var new_rhymes = [];
 
     if (rhyme_list.length < 1) {
