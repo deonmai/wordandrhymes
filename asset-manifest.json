@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/wordandrhymes/static/css/main.a4f0ec84.chunk.css",
-    "main.js": "/wordandrhymes/static/js/main.4414161e.chunk.js",
-    "main.js.map": "/wordandrhymes/static/js/main.4414161e.chunk.js.map",
+    "main.js": "/wordandrhymes/static/js/main.65ca2efd.chunk.js",
+    "main.js.map": "/wordandrhymes/static/js/main.65ca2efd.chunk.js.map",
     "runtime-main.js": "/wordandrhymes/static/js/runtime-main.494af079.js",
     "runtime-main.js.map": "/wordandrhymes/static/js/runtime-main.494af079.js.map",
     "static/js/2.245094e2.chunk.js": "/wordandrhymes/static/js/2.245094e2.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.494af079.js",
     "static/js/2.245094e2.chunk.js",
     "static/css/main.a4f0ec84.chunk.css",
-    "static/js/main.4414161e.chunk.js"
+    "static/js/main.65ca2efd.chunk.js"
   ]
 }
