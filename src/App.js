@@ -35,10 +35,12 @@ function App() {
 
     if (rhyme_list.length < 10)
     {
-      var res = await fetch(`https://api.datamuse.com/words?rel_nry=${word}&max=40`)
+      res = await fetch(`https://api.datamuse.com/words?rel_nry=${word}&max=40`)
       var rhymes_two = await res.json()
       rhyme_list = rhyme_list.concat(rhymes_two)
     }
+
+    console.log(rhyme_list)
 
     var new_rhymes = [];
 
@@ -54,15 +56,12 @@ function App() {
     else {
       for(var i = 0; i < 3; i++) {
         var randInt = randomInt(1, rhyme_list.length)
-        var lastWord = "";
         var rh = rhyme_list[randInt]['word'].toUpperCase()
 
-        if (new_rhymes.includes(rh) || lastWord.charAt(0) === rh.charAt(0) || rh === word) {
+        if (new_rhymes.includes(rh) || rh.includes(word) || rh.length < 2) {
           i -= 1;
-          lastWord = "";
         } else {
-          new_rhymes.unshift(rh)
-          lastWord = rh
+          new_rhymes.unshift(rh);
         }
       }
     }
