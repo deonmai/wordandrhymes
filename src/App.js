@@ -12,7 +12,8 @@ function App() {
   var randomWords = require('random-words');
 
   const [currentWord, setWord] = useState("CLICK");
-  const [rhymes, setRhymes] = useState(["FOR", "YOUR", "WORD"])
+  const [rhymes, setRhymes] = useState(["FOR", "YOUR", "WORD"]);
+  const [toggle, setToggle] = useState(true);
 
   const generateWord = async () => {
     var new_word =  await randomWords();
@@ -40,7 +41,7 @@ function App() {
       rhyme_list = rhyme_list.concat(rhymes_two)
     }
 
-    console.log(rhyme_list)
+    console.log(rhyme_list) 
 
     var new_rhymes = [];
 
@@ -58,7 +59,7 @@ function App() {
         var randInt = randomInt(1, rhyme_list.length)
         var rh = rhyme_list[randInt]['word'].toUpperCase()
 
-        if (new_rhymes.includes(rh) || rh.includes(word) || rh.length < 2) {
+        if (new_rhymes.includes(rh) || rh.includes(word) || rh.length <= 2) {
           i -= 1;
         } else {
           new_rhymes.unshift(rh);
@@ -67,6 +68,11 @@ function App() {
     }
 
     setRhymes(new_rhymes);
+  }
+
+  const toggleRhymes = () => {
+    var new_toggle = !toggle
+    setToggle(new_toggle)
   }
 
   return (
@@ -78,13 +84,15 @@ function App() {
             <Button class = "btn" divName = 'btndiv' text = "Let's Go!" onClick = {generateWord}/>
 
             <Word word = {currentWord} class = "wrd"/>
-            <Rhymes rhymes = {rhymes} class = "subwrds"/>
+            {toggle && <Rhymes rhymes = {rhymes} class = "subwrds"/>}
 
             <Footer />
           </>
         )} />
 
-        <Route path = '/about' exact component = {About} />
+        <Route path = '/about' exact render = {(props) => (
+          <About toggleRhymes = {toggle} onChange = {toggleRhymes} />
+        )} />
       </div>
     </HashRouter>
   );
